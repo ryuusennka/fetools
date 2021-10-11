@@ -6,3 +6,4 @@
  * @FilePath      : /fetools/src/index.js
  * @Description   :
  */
+"use strict";

@@ -1,0 +1,26 @@
+{
+  "name": "@sennka/fetools",
+  "version": "1.0.0",
+  "description": "This is my collection of front-end development toolkits",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel ./src -d ./dist",
+    "watch": "babel ./src -w -d ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryuusennka/fetools.git"
+  },
+  "author": "ryuusennka <369563963@qq.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryuusennka/fetools/issues"
+  },
+  "homepage": "https://github.com/ryuusennka/fetools#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "husky": "^7.0.2"
+  }
+}
