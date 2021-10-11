@@ -6,16 +6,17 @@ Object.defineProperty(exports, "__esModule", {
 exports.replaceTheTextAccordingToStringIndex = exports.randomNum = exports.randomColor = exports.lineBreaksToArray = exports.generateRandomString = exports.formatTime = exports.formatRemainTime = exports.formatPassTime = exports.formatJson = void 0;
 
 /*
- * @Author: ryuusennka
- * @Date: 2020-04-22 16:38:38
- * @LastEditors: ryuusennka
- * @LastEditTime: 2021-09-24 03:33:52
- * @FilePath: /sennka-tools/src/String.js
- * @Description:
+ * @Author        : ryuusennka
+ * @Date          : 2020-04-22 16:38:38
+ * @LastEditors   : ryuusennka
+ * @LastEditTime  : 2021-10-12 04:36:54
+ * @FilePath      : /fetools/src/String.js
+ * @Description   :
  */
 
 /**
  * 获取 hex 随机颜色
+ * @returns {String} 十六进制颜色
  */
 var randomColor = function randomColor() {
   function _format(num) {
@@ -130,43 +131,29 @@ var formatRemainTime = function formatRemainTime(endTime) {
   return [day, hour, minute, second];
 };
 /**
- * 格式化时间戳
- * @param {number} timestamp 传入时间戳
- * @param {string} format 可选,传入自定义格式化 如Y-m-d H:i:s
+ * 根据时间戳返回格式化的时间,如 2021-10-12 04:08:23
+ * @param {Number} timestamp 时间戳
  */
 
 
 exports.formatRemainTime = formatRemainTime;
 
-var formatTime = function formatTime(timestamp, format) {
-  if (!timestamp) return null;
-  var aY = am = '-',
-      ad = _as = ' ',
-      aH = ai = ':';
+var formatTime = function formatTime() {
+  var timestamp = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  if (typeof timestamp !== 'number') return false;
 
-  if (format) {
-    // eg: 从Y不包含Y取到m不包含m
-    aY = format.match(/Y(.*)m/)[1];
-    am = format.match(/m(.*)d/)[1];
-    ad = format.match(/d(.*)H/)[1];
-    aH = format.match(/H(.*)i/)[1];
-    ai = format.match(/i(.*)s/)[1];
-    _as = format.substr(format.indexOf('s') + 1);
-  }
+  var fill_0 = function fill_0(n) {
+    return n < 10 ? "0".concat(n) : n;
+  };
 
-  var date = new Date(timestamp),
-      y = date.getFullYear(),
-      m = date.getMonth() + 1,
-      d = date.getDate(),
-      h = date.getHours(),
-      i = date.getMinutes(),
-      s = date.getSeconds();
-  d = d < 10 ? '0' + d : d;
-  m = m < 10 ? '0' + m : m;
-  h = h < 10 ? '0' + h : h;
-  i = i < 10 ? '0' + i : i;
-  s = s < 10 ? '0' + s : s;
-  return y + aY + m + am + d + ad + h + aH + i + ai + s + _as;
+  var timer = new Date(timestamp);
+  var Nian = timer.getFullYear();
+  var Yue = fill_0(timer.getMonth() + 1);
+  var Ri = fill_0(timer.getDate());
+  var Shi = fill_0(timer.getHours());
+  var Fen = fill_0(timer.getMinutes());
+  var Miao = fill_0(timer.getSeconds());
+  return "".concat(Nian, "-").concat(Yue, "-").concat(Ri, " ").concat(Shi, ":").concat(Fen, ":").concat(Miao);
 };
 /**
  * 格式化JSON代码

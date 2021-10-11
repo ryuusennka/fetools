@@ -20,9 +20,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 /*
  * @Author: ryuusennka
  * @Date: 2020-04-30 11:12:40
- * @LastEditors: ryuusennka
- * @LastEditTime: 2021-04-16 01:22:08
- * @FilePath: /sennka-tools/src/Array.js
+ * @LastEditors   : ryuusennka
+ * @LastEditTime  : 2021-10-12 05:17:50
+ * @FilePath      : /fetools/src/Array.js
  * @Description:
  */
 
@@ -92,6 +92,19 @@ var getRandomItem = function getRandomItem(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 /**
+ * 把数组排序打乱，注意：不能用于需要严格的打乱的情况
+ * @param {Array} arr 想要打乱的数组
+ */
+
+
+exports.getRandomItem = getRandomItem;
+
+var shuffleArr = function shuffleArr(arr) {
+  arr.sort(function () {
+    return 0.5 - Math.random();
+  });
+};
+/**
  * 从数组中删除指定的元素
  * @param {array} oldArr 原来的数组
  * @param {Any} specifiedElement 原来数组中的元素
@@ -102,8 +115,6 @@ var getRandomItem = function getRandomItem(arr) {
  * var newArr = deleteSpecifiedElement(arr,s); // [{a:1},{a:3}]
  */
 
-
-exports.getRandomItem = getRandomItem;
 
 var deleteSpecifiedElement = function deleteSpecifiedElement(oldArr, specifiedElement) {
   return oldArr.filter(function (item) {
