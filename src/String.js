@@ -1,14 +1,15 @@
 /*
- * @Author: ryuusennka
- * @Date: 2020-04-22 16:38:38
- * @LastEditors: ryuusennka
- * @LastEditTime: 2021-09-24 03:33:52
- * @FilePath: /sennka-tools/src/String.js
- * @Description:
+ * @Author        : ryuusennka
+ * @Date          : 2020-04-22 16:38:38
+ * @LastEditors   : ryuusennka
+ * @LastEditTime  : 2021-10-12 04:36:54
+ * @FilePath      : /fetools/src/String.js
+ * @Description   :
  */
 
 /**
  * 获取 hex 随机颜色
+ * @returns {String} 十六进制颜色
  */
 export const randomColor = () => {
   function _format(num) {
@@ -102,38 +103,21 @@ export const formatRemainTime = endTime => {
 };
 
 /**
- * 格式化时间戳
- * @param {number} timestamp 传入时间戳
- * @param {string} format 可选,传入自定义格式化 如Y-m-d H:i:s
+ * 根据时间戳返回格式化的时间,如 2021-10-12 04:08:23
+ * @param {Number} timestamp 时间戳
  */
-export const formatTime = (timestamp, format) => {
-  if (!timestamp) return null;
-  let aY = (am = '-'),
-    ad = (_as = ' '),
-    aH = (ai = ':');
-  if (format) {
-    // eg: 从Y不包含Y取到m不包含m
-    aY = format.match(/Y(.*)m/)[1];
-    am = format.match(/m(.*)d/)[1];
-    ad = format.match(/d(.*)H/)[1];
-    aH = format.match(/H(.*)i/)[1];
-    ai = format.match(/i(.*)s/)[1];
-    _as = format.substr(format.indexOf('s') + 1);
-  }
-  let date = new Date(timestamp),
-    y = date.getFullYear(),
-    m = date.getMonth() + 1,
-    d = date.getDate(),
-    h = date.getHours(),
-    i = date.getMinutes(),
-    s = date.getSeconds();
 
-  d = d < 10 ? '0' + d : d;
-  m = m < 10 ? '0' + m : m;
-  h = h < 10 ? '0' + h : h;
-  i = i < 10 ? '0' + i : i;
-  s = s < 10 ? '0' + s : s;
-  return y + aY + m + am + d + ad + h + aH + i + ai + s + _as;
+export const formatTime = (timestamp = 0) => {
+  if (typeof timestamp !== 'number') return false;
+  const fill_0 = n => (n < 10 ? `0${n}` : n);
+  const timer = new Date(timestamp);
+  let Nian = timer.getFullYear();
+  let Yue = fill_0(timer.getMonth() + 1);
+  let Ri = fill_0(timer.getDate());
+  let Shi = fill_0(timer.getHours());
+  let Fen = fill_0(timer.getMinutes());
+  let Miao = fill_0(timer.getSeconds());
+  return `${Nian}-${Yue}-${Ri} ${Shi}:${Fen}:${Miao}`;
 };
 
 /**

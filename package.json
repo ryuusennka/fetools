@@ -1,6 +1,6 @@
 {
   "name": "@sennka/fetools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is my collection of front-end development toolkits",
   "main": "index.js",
   "scripts": {
